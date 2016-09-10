@@ -12,9 +12,12 @@ logging.warning('This is a warning message.')
 logging.info('This is an informative message.')
 logging.debug('This is a low-level debug message.')
 
+pyautogui.PAUSE = 2.5   #pauses after each call - making lots of my time unneeded
+
 
 astral_counter = 50 #change to make bot run longer
 levy_counter = 0 #up to 5 a day? better way obv
+contrib_amt = 10000 #amount to contribute to guild
 
 #quickbuttons
 q_archeology = 'r'
@@ -43,26 +46,26 @@ def load_game():
     driver.get("http://www.kongregate.com/games/R2Games/wartune")
     logging.info("browser loaded")
     driver.maximize_window()
-    time.sleep(2)
+
     logging.info("screen maximized")
     username = driver.find_element_by_id("welcome_username")
     username.send_keys("Realio")
     #username.send_keys("FroggerXP")
     #username.send_keys("weareyou")
-    time.sleep(2)
+
     logging.info("username entered")
     password = driver.find_element_by_id("welcome_password")
     password.send_keys("snogger5444")
     #password.send_keys("sounders")
-    time.sleep(2)
+
     logging.info("password entered")
     signin = driver.find_element_by_id("welcome_box_sign_in_button")
     signin.click()
-    time.sleep(2)
+
     logging.info("verified user")
     cinematic = driver.find_element_by_id("cinematic_mode_link")
     cinematic.click()
-    time.sleep(2)
+
     logging.info("cinematic mode initialized")
     frame = driver.find_element_by_id("gameiframe")
     driver.switch_to.frame(frame)
@@ -84,10 +87,10 @@ def soundoff():
     time.sleep(5)
     pyautogui.click(804,527)
     logging.info("music off")
-    time.sleep(1)
+
     pyautogui.click(804,606)
     logging.info("effects off")
-    time.sleep(1)
+
     pyautogui.click(867,881)
     logging.info("confirmed")
     time.sleep(4)
@@ -96,13 +99,13 @@ def soundoff():
 def daily_devotion():
     pyautogui.click(random.randrange(350,385,1),random.randrange(580,582,1))
     logging.info("devotion menu")
-    time.sleep(2)
+
     pyautogui.click(random.randrange(565,685,1),random.randrange(535,580,1))
     logging.info("check-in reward")
-    time.sleep(1)
+
     pyautogui.click(875,650)
     logging.info("check in confirmed")
-    time.sleep(1)
+
     pyautogui.click(1257,436)
     logging.info("daily check in completed")
     time.sleep(4)
@@ -114,10 +117,10 @@ def daily_experience():
     time.sleep(4)
     pyautogui.click(1110,688)
     logging.info("xp selected")
-    time.sleep(1)
+
     pyautogui.click(1195,472) #exit
     logging.info("daily xp click completed")
-    time.sleep(2)
+
 
 #levy
 def daily_levy():
@@ -137,19 +140,19 @@ def daily_levy():
 def daily_spins():
     global q_inventory
     pyautogui.typewrite(q_inventory)
-    time.sleep(2)
+
     pyautogui.click(762,601)
-    time.sleep(2)
+
     pyautogui.click(random.randrange(1121,1160,1),random.randrange(618,671,1))
     logging.info("snipers edge spin")
     time.sleep(6)
     pyautogui.click(914,830)
-    time.sleep(2)
+
     pyautogui.click(random.randrange(1121,1160,1),random.randrange(618,671,1))
     logging.info("tenacity spin")
     time.sleep(6)
     pyautogui.click(920,889)
-    time.sleep(2)
+
     pyautogui.click(random.randrange(1121,1160,1),random.randrange(618,671,1))
     logging.info("influence spin")
     time.sleep(6)
@@ -166,6 +169,8 @@ def login_daily_stuff():
     daily_levy()
     time.sleep(5)
     daily_spins()
+    time.sleep(5)
+    daily_contribution()
     time.sleep(5)
     sylph_expedition()
     time.sleep(5)
@@ -305,6 +310,7 @@ def eud_bounty():
 '''
 
 def astrals():
+    time.sleep(5)
     global q_astrals
     pyautogui.typewrite(q_astrals)
     time.sleep(5)
@@ -318,13 +324,13 @@ def astrals():
         pyautogui.click(757,random.randrange(904,908,1)) #satum
         pyautogui.click(855,random.randrange(904,908,1)) #chiron
         pyautogui.click(897,813) #1click synth
-        time.sleep(1)
+
         pyautogui.click(868,710) #confirm
         count = count+1
-        if count % 10 == 0
+        if count % 10 == 0:
             print(str(count)+" astrals completed")
 
-    time.sleep(2)
+
     pyautogui.click(1034,414) #close
     logging.info(str(count)+" total astrals farmed this round")
     time.sleep(10)
@@ -334,7 +340,7 @@ def astrals():
 def farm():
     switch_city()
     pyautogui.click(1587,494) #minimize quest tracking
-    time.sleep(2)
+
     pyautogui.click(random.randrange(1331,1466,1),random.randrange(520,564,1)) #click farm
     time.sleep(10) #farm load can be slow
     logging.info("farm opened")
@@ -351,34 +357,34 @@ def kittens():
     pyautogui.click(1554,307) #kittens chosen
     time.sleep(5)
     pyautogui.click(random.randrange(582,671,1),random.randrange(636,658,1))
-    time.sleep(1)
+
     pyautogui.click(random.randrange(582,671,1),random.randrange(880,904,1))
-    time.sleep(1)
+
     pyautogui.click(random.randrange(834,924,1),random.randrange(780,806,1))
-    time.sleep(1)
+
     pyautogui.click(random.randrange(1046,1135,1),random.randrange(635,659,1))
-    time.sleep(1)
+
     pyautogui.click(random.randrange(1056,1150,1),random.randrange(884,911,1))
-    time.sleep(1)
+
     logging.info("all 5 kittens retrieved")
     pyautogui.click(random.randrange(582,671,1),random.randrange(636,658,1))
-    time.sleep(2)
+
     pyautogui.click(1088,520)
     logging.info("1")
     pyautogui.click(random.randrange(582,671,1),random.randrange(880,904,1))
-    time.sleep(2)
+
     pyautogui.click(1088,520)
     logging.info("2")
     pyautogui.click(random.randrange(834,924,1),random.randrange(780,806,1))
-    time.sleep(2)
+
     pyautogui.click(1088,520)
     logging.info("3")
     pyautogui.click(random.randrange(1046,1135,1),random.randrange(635,659,1))
-    time.sleep(2)
+
     pyautogui.click(1088,520)
     logging.info("4")
     pyautogui.click(random.randrange(1056,1150,1),random.randrange(884,911,1))
-    time.sleep(2)
+
     pyautogui.click(1088,520)
     logging.info("all 5 kittens reloaded")
     pyautogui.click(1241,422)
@@ -389,44 +395,44 @@ def crops():
     pyautogui.click(1424,304) #open farm page
     time.sleep(5) #load farm
     pyautogui.click(1009,572)
-    time.sleep(2)
+
     pyautogui.click(1009,572)
-    time.sleep(2)
+
     logging.info("energized/refreshed tree")
     pyautogui.click(713,645)
-    time.sleep(2)
+
     pyautogui.click(783,675)
-    time.sleep(2)
+
     pyautogui.click(859,710)
-    time.sleep(2)
+
     pyautogui.click(648,674)
-    time.sleep(2)
+
     pyautogui.click(726,715)
-    time.sleep(2)
+
     pyautogui.click(790,747)
-    time.sleep(2)
+
     pyautogui.click(584,713)
-    time.sleep(2)
+
     pyautogui.click(660,748)
-    time.sleep(2)
+
     pyautogui.click(725,793)
-    time.sleep(2)
+
     pyautogui.click(909,755)
-    time.sleep(2)
+
     pyautogui.click(978,791)
-    time.sleep(2)
+
     pyautogui.click(1048,825)
-    time.sleep(2)
+
     pyautogui.click(845,792)
-    time.sleep(2)
+
     pyautogui.click(921,825)
-    time.sleep(2)
+
     pyautogui.click(989,859)
-    time.sleep(2)
+
     pyautogui.click(780,832)
-    time.sleep(2)
+
     pyautogui.click(856,862)
-    time.sleep(2)
+
     pyautogui.click(926,901)
     time.sleep(5)
     logging.info("all crops harvested")
@@ -444,11 +450,11 @@ def dock():
 def catacombs():
     switch_city()
     pyautogui.click(random.randrange(620,690,1),random.randrange(760,790,1))
-    time.sleep(2)
+
     logging.info("catacombs loaded")
     pyautogui.click(616,561)
     logging.info("forgotten catacombs chosen")
-    time.sleep(1)
+
     pyautogui.click(1055,778) #crypt key
     pyautogui.click(1079,855)
     time.sleep(3)
@@ -458,23 +464,23 @@ def catacombs():
 
     pyautogui.click(621,690)
     logging.info("tormented necropolis chosen")
-    time.sleep(1)
+
     pyautogui.click(1055,778) #crypt key
     pyautogui.click(1079,855)
     time.sleep(3)
     pyautogui.click(1062,751)
     logging.info("blitzing necro")
-    time.sleep(1)#time can be changed for blitz
+    #time can be changed for blitz
 
     pyautogui.click(615,832)
     logging.info("purgatory maze chosen")
-    time.sleep(1)
+
     pyautogui.click(1055,778) #purgatory key
     pyautogui.click(1079,855)
     time.sleep(3)
     pyautogui.click(1062,751)
     logging.info("blitzing maze")
-    time.sleep(1)#time can be changed for blitz
+    #time can be changed for blitz
 
 #magic inn
 def inn():
@@ -485,29 +491,71 @@ def inn():
     time.sleep(4)
     pyautogui.click(random.randrange(1160,1275,1),random.randrange(910,925,1))
     logging.info("explore option")
-    time.sleep(2)
+
     while count < 10:
         pyautogui.click(random.randrange(890,980,1),random.randrange(920,930,1)) #walking
         time.sleep(8)
         pyautogui.click(880,770) #confirmed
         count += 1
         print(str(count)+" out of 10 completed")
-        time.sleep(2)
+
     pyautogui.click(1397,418) #confirmed
-    time.sleep(2)
+
     pyautogui.click(1334,404) #exit
     time.sleep(5)
     logging.info("magic inn completed")
+
+#daily contrib
+def daily_contribution():
+    time.sleep(5)
+    global q_guild
+    #global contrib_amt
+    pyautogui.press(q_guild)
+    time.sleep(5)
+    pyautogui.click(684,735)
+
+    #pyautogui.press("10000") Hlkkafdklahskfd
+
+    pyautogui.click(1210,713)
+
+    pyautogui.click(1267,480)
+    time.sleep(5)
+
+
+#altar spins
+def daily_altar():
+    time.sleep(5)
+    #assuming already in the guild tab?
+    count = 0
+    pyautogui.click(1118,491)
+    logging.info("territory chosen")
+
+    pyautogui.click(850,754)
+    logging.info("open altar")
+
+    while count < 30:
+        pyautogui.click(1037,849)
+        logging.debug("click")
+
+        count+=1
+
+    logging.info("all "+str(count)+" completed")
+    pyautogui.click(1043,463)
+    pyautogui.click(1287,458)
+    time.sleep(5)
+
 
 #main
 
 #load_game()
 #soundoff()
+#daily_contribution()
+#daily_altar()
 #login_daily_stuff()
 #farm()
 #sylph_expedition()
 #catacombs
-astrals()
+#astrals()
 #arena()
 #kittens()
 #inn()
